@@ -1,0 +1,58 @@
+<!-- Lead Whats Up Messenger -->
+<template>
+    <div class="slds-grid_vertical slds-color__background_gray-1 slds-p-around_medium">
+
+        <div class="slds-col">
+            <lightning-input label="Access Key"
+                             required="true"
+                             onchange={handleKeyChange}
+                             value={key}></lightning-input>
+        </div>
+
+        <div class="slds-col">
+            <lightning-input label="Channel ID"
+                             required="true"
+                             onchange={handleChannelIDChange}
+                             value={channelId}></lightning-input>
+        </div>
+
+
+        <div class="slds-col">
+            <lightning-input type="tel" label="To" value={mobilePhone} disabled=true></lightning-input>
+        </div>
+        <div class="slds-col">
+            <lightning-textarea name="inputMessage" label="Message"
+                                value={defaultMessage}
+                                onchange={handleMessageChange}
+                                placeholder="type here..."></lightning-textarea>
+        </div>
+        <div class="slds-col">
+            <div class="slds-clearfix">
+                <div class="slds-float_right">
+                    <lightning-button variant="brand"
+                                      icon-name="utility:send"
+                                      label="Send" title="Send" onclick={handleSend} class="slds-m-left_x-small"></lightning-button>
+                </div>
+            </div>
+        </div>
+
+        <template if:true={showStatus}>
+            <div class="slds-col">
+                <div class="slds-box slds-theme_shade slds-theme_alert-texture slds-m-top_small">
+                    <lightning-textarea name="resp" label="Response"
+                                        value={messageStatus}
+                                        read-only="true"
+                                        ></lightning-textarea>
+                </div>
+            </div>
+        </template>
+
+
+        <template if:true={showSpinner}>
+            <lightning-spinner alternative-text="loading" size="small"></lightning-spinner>
+        </template>
+
+    </div>
+
+
+</template>
